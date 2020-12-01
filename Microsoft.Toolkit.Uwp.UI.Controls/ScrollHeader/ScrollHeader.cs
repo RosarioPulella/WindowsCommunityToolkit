@@ -4,7 +4,6 @@
 
 using System;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
-using Microsoft.Xaml.Interactivity;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
