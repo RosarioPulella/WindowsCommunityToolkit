@@ -224,10 +224,6 @@
       <Project>{e9faabfb-d726-42c1-83c1-cb46a29fea81}</Project>
       <Name>Microsoft.Toolkit.Uwp.UI.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Microsoft.Toolkit.Uwp.UI.Media\Microsoft.Toolkit.Uwp.UI.Media.csproj">
-      <Project>{75f9ee44-3efa-47bc-aedd-351b9834a0af}</Project>
-      <Name>Microsoft.Toolkit.Uwp.UI.Media</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Microsoft.Toolkit.Uwp.UI\Microsoft.Toolkit.Uwp.UI.csproj">
       <Project>{3dd8aa7c-3569-4e51-992f-0c2257e8878e}</Project>
       <Name>Microsoft.Toolkit.Uwp.UI</Name>
