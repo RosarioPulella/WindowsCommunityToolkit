@@ -137,6 +137,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UITests.Tests.Shared", "UIT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Toolkit.Uwp.UI.Controls.Media", "Microsoft.Toolkit.Uwp.UI.Controls.Media\Microsoft.Toolkit.Uwp.UI.Controls.Media.csproj", "{43BD2A36-9E12-4788-80AE-2377E41E6D05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Toolkit.Uwp.UI.Controls.Media.DesignTools", "Microsoft.Toolkit.Uwp.UI.Controls.Media.Design\Microsoft.Toolkit.Uwp.UI.Controls.Media.DesignTools.csproj", "{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}"
+	ProjectSection(ProjectDependencies) = postProject
+		{43BD2A36-9E12-4788-80AE-2377E41E6D05} = {43BD2A36-9E12-4788-80AE-2377E41E6D05}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		UITests\UITests.Tests.Shared\UITests.Tests.Shared.projitems*{05c83067-fa46-45e2-bec4-edee84ad18d0}*SharedItemsImports = 4
@@ -978,6 +983,18 @@ Global
 		{43BD2A36-9E12-4788-80AE-2377E41E6D05}.Release|x64.Build.0 = Release|Any CPU
 		{43BD2A36-9E12-4788-80AE-2377E41E6D05}.Release|x86.ActiveCfg = Release|Any CPU
 		{43BD2A36-9E12-4788-80AE-2377E41E6D05}.Release|x86.Build.0 = Release|Any CPU
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Debug|ARM.ActiveCfg = Debug|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Debug|ARM64.ActiveCfg = Debug|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Debug|x64.ActiveCfg = Debug|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Debug|x86.ActiveCfg = Debug|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Debug|x86.Build.0 = Debug|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Release|Any CPU.ActiveCfg = Release|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Release|ARM.ActiveCfg = Release|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Release|ARM64.ActiveCfg = Release|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Release|x64.ActiveCfg = Release|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Release|x86.ActiveCfg = Release|x86
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1020,6 +1037,7 @@ Global
 		{C8182EF0-77FB-4B43-A588-C71748A309C7} = {6FAA1CFE-3368-4FD2-9DBD-F4700F69174C}
 		{1D8B0260-5C17-41DA-9C38-1E37441B3925} = {6FAA1CFE-3368-4FD2-9DBD-F4700F69174C}
 		{43BD2A36-9E12-4788-80AE-2377E41E6D05} = {F1AFFFA7-28FE-4770-BA48-10D76F3E59BC}
+		{84DA38A9-8A10-47AA-B69E-9C8334D1BB69} = {F1AFFFA7-28FE-4770-BA48-10D76F3E59BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5403B0C4-F244-4F73-A35C-FE664D0F4345}
