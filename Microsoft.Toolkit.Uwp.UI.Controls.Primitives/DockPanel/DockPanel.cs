@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,9 +17,31 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
         private static void DockChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;
-            var dockPanel = senderElement?.FindParent<DockPanel>();
+            var dockPanel = senderElement is FrameworkElement se ? FindParent<DockPanel>(se) : null;
 
             dockPanel?.InvalidateArrange();
+        }
+
+        /// <summary>
+        /// Find first logical parent control of a specified type.
+        /// </summary>
+        /// <typeparam name="T">Type to search for.</typeparam>
+        /// <param name="element">Child element.</param>
+        /// <returns>Parent control or null if not found.</returns>
+        public static T FindParent<T>(FrameworkElement element)
+            where T : FrameworkElement
+        {
+            if (element.Parent == null)
+            {
+                return null;
+            }
+
+            if (element.Parent is T)
+            {
+                return element.Parent as T;
+            }
+
+            return FindParent<T>(element.Parent as FrameworkElement);
         }
 
         private static void LastChildFillChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
