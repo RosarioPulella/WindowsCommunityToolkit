@@ -63,7 +63,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             {
                 Orientation.Vertical => new Rect(Position.V, Position.U, Size.V, Size.U),
                 Orientation.Horizontal => new Rect(Position.U, Position.V, Size.U, Size.V),
-                _ => ThrowHelper.ThrowNotSupportedException<Rect>("unsupported orientation"),
+                _ => throw new NotSupportedException("unsupported orientation")
             };
         }
 

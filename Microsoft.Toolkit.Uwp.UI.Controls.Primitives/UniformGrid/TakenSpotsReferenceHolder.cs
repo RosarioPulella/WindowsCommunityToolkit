@@ -2,9 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections;
 using System.Drawing;
-using Microsoft.Toolkit.Diagnostics;
 
 namespace Microsoft.Toolkit.Uwp.UI.Controls
 {
@@ -35,6 +35,40 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             Width = columns;
 
             this.spotsTaken = new BitArray(rows * columns);
+        }
+
+        /// <summary>
+        /// Asserts that the input value must be greater than or equal to a specified value.
+        /// </summary>
+        /// <param name="value">The input <see cref="int"/> value to test.</param>
+        /// <param name="minimum">The inclusive minimum <see cref="int"/> value that is accepted.</param>
+        /// <param name="name">The name of the input parameter being tested.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="value"/> is &lt; <paramref name="minimum"/>.</exception>
+        /// <remarks>The method is generic to avoid boxing the parameters, if they are value types.</remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void IsGreaterThanOrEqualTo(int value, int minimum, string name)
+        {
+            if (value >= minimum)
+            {
+                return;
+            }
+
+            throw new ArgumentOutOfRangeException(name, value!, $"Parameter {ToAssertString(name)} (int) must be greater than or equal to {ToAssertString(minimum)}, was {ToAssertString(value)}");
+        }
+
+        /// <summary>
+        /// Returns a formatted representation of the input value.
+        /// </summary>
+        /// <param name="obj">The input <see cref="object"/> to format.</param>
+        /// <returns>A formatted representation of <paramref name="obj"/> to display in error messages.</returns>
+        private static string ToAssertString(object? obj)
+        {
+            return obj switch
+            {
+                string _ => $"\"{obj}\"",
+                null => "null",
+                _ => $"<{obj}>"
+            };
         }
 
         /// <summary>
