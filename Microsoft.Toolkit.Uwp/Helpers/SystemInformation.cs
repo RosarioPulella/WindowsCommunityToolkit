@@ -21,7 +21,7 @@ namespace Microsoft.Toolkit.Uwp.Helpers
     /// </summary>
     public sealed class SystemInformation
     {
-        private readonly LocalObjectStorageHelper _localObjectStorageHelper = new LocalObjectStorageHelper();
+        private readonly LocalObjectStorageHelper _localObjectStorageHelper;
         private DateTime _sessionStart;
 
         /// <summary>
@@ -33,11 +33,6 @@ namespace Microsoft.Toolkit.Uwp.Helpers
         {
             await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store://review/?PFN={0}", Package.Current.Id.FamilyName)));
         }
-
-        /// <summary>
-        /// Gets the unique instance of <see cref="SystemInformation"/>.
-        /// </summary>
-        public static SystemInformation Instance { get; } = new SystemInformation();
 
         /// <summary>
         /// Gets the application's name.
@@ -279,8 +274,10 @@ namespace Microsoft.Toolkit.Uwp.Helpers
         /// <summary>
         /// Initializes a new instance of the <see cref="SystemInformation"/> class.
         /// </summary>
-        private SystemInformation()
+        /// <param name="localObjectStorageHelper"><see cref="LocalObjectStorageHelper"/> used to store an retrive system information.</param>
+        public SystemInformation(LocalObjectStorageHelper localObjectStorageHelper)
         {
+            _localObjectStorageHelper = localObjectStorageHelper;
             ApplicationName = Package.Current.DisplayName;
             ApplicationVersion = Package.Current.Id.Version;
             try
