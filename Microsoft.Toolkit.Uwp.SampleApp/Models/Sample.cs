@@ -626,33 +626,28 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             }
         }
 
+        private static readonly Type[] LookupTypes = new string[]
+            {
+                "Windows",
+                "Microsoft.Toolkit.Uwp.UI.Controls.Core",
+
+               // TODO Reintroduce graph controls
+               // "Microsoft.Toolkit.Graph.Controls"
+                "Microsoft.Toolkit.Uwp.UI.Animations",
+                "Microsoft.Toolkit.Uwp.UI",
+                "Microsoft.Toolkit.Uwp.Input.GazeInteraction",
+                "Microsoft.Toolkit.Uwp.UI.Controls.DataGrid",
+                "Microsoft.Toolkit.Uwp.UI.Controls.Layout",
+                "Microsoft.Toolkit.Uwp.UI.Controls.Markdown",
+                "Microsoft.Toolkit.Uwp.UI.Controls.Media",
+                "Microsoft.Toolkit.Uwp.UI.Controls.Primitives"
+            }
+            .Select(t => AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == t))
+            .SelectMany(t => t.ExportedTypes).ToArray();
+
         private static Type LookForTypeByName(string typeName)
         {
-            // First search locally
-            if (System.Type.GetType(typeName) is Type systemType)
-            {
-                return systemType;
-            }
-
-            var targets = new Type[]
-            {
-                VerticalAlignment.Center.GetType(), // Windows
-                StackMode.Replace.GetType(), // Microsoft.Toolkit.Uwp.UI.Controls.Core
-
-              // TODO Reintroduce graph controls
-              // typeof(UserToPersonConverter)) // Search in Microsoft.Toolkit.Graph.Controls
-                EasingType.Default.GetType(), // Microsoft.Toolkit.Uwp.UI.Animations
-                ImageBlendMode.Multiply.GetType(), // Search in Microsoft.Toolkit.Uwp.UI
-                Interaction.Enabled.GetType(), // Microsoft.Toolkit.Uwp.Input.GazeInteraction
-                DataGridGridLinesVisibility.None.GetType(), // Microsoft.Toolkit.Uwp.UI.Controls.DataGrid
-                GridSplitter.GridResizeDirection.Auto.GetType(), // Microsoft.Toolkit.Uwp.UI.Controls.Layout
-                typeof(MarkdownTextBlock), // Microsoft.Toolkit.Uwp.UI.Controls.Markdown
-                BitmapFileFormat.Bmp.GetType(), // Microsoft.Toolkit.Uwp.UI.Controls.Media
-                StretchChild.Last.GetType() // Microsoft.Toolkit.Uwp.UI.Controls.Primitivs
-            };
-
-            return targets.SelectMany(t => t.Assembly.ExportedTypes)
-                .FirstOrDefault(t => t.Name == typeName);
+            return System.Type.GetType(typeName) ?? LookupTypes.FirstOrDefault(t => t.Name == typeName);
         }
 
         private static async Task<string> GetDocsSHA()
