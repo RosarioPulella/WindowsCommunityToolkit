@@ -47,9 +47,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
                 var viewportBehavior = behaviors.OfType<ViewportBehavior>().FirstOrDefault();
                 if (viewportBehavior != null)
                 {
-                    viewportBehavior.EnteredViewport += EffectElementHost_EnteredViewport;
                     viewportBehavior.EnteringViewport += EffectElementHost_EnteringViewport;
-                    viewportBehavior.ExitedViewport += EffectElementHost_ExitedViewport;
                     viewportBehavior.ExitingViewport += EffectElementHost_ExitingViewport;
                 }
             }
@@ -67,26 +65,11 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
             _logs.Clear();
         }
 
-        private async void EffectElementHost_EnteredViewport(object sender, EventArgs e)
-        {
-            AddLog("Entered viewport");
-
-            ////TODO: await _effectElement.Blur(value: 0, duration: 1500).StartAsync();
-        }
-
         private void EffectElementHost_EnteringViewport(object sender, EventArgs e)
         {
             AddLog("Entering viewport");
 
             _effectElement.Source = new BitmapImage(new Uri("ms-appx:///Assets/ToolkitLogo.png"));
-        }
-
-        private async void EffectElementHost_ExitedViewport(object sender, EventArgs e)
-        {
-            AddLog("Exited viewport");
-
-            _effectElement.Source = null;
-            ////TODO: await _effectElement.Blur(value: 8, duration: 0).StartAsync();
         }
 
         private void EffectElementHost_ExitingViewport(object sender, EventArgs e)
