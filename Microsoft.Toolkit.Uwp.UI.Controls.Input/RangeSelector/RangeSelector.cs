@@ -424,15 +424,28 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             var position = e.GetCurrentPoint(_containerCanvas).Position.X;
             var normalizedPosition = ((position / DragWidth()) * (Maximum - Minimum)) + Minimum;
 
-            if (_pointerManipulatingMin && normalizedPosition < RangeMax)
+            if (_minThumb is Thumb minThumb && _maxThumb is Thumb maxThumb)
             {
-                RangeMin = DragThumb(_minThumb, 0, Canvas.GetLeft(_maxThumb), position);
-                _toolTipText.Text = FormatForToolTip(RangeMin);
-            }
-            else if (_pointerManipulatingMax && normalizedPosition > RangeMin)
-            {
-                RangeMax = DragThumb(_maxThumb, Canvas.GetLeft(_minThumb), DragWidth(), position);
-                _toolTipText.Text = FormatForToolTip(RangeMax);
+                double toolTipValue;
+                if (_pointerManipulatingMin && normalizedPosition < RangeMax)
+                {
+                    RangeMin = DragThumb(minThumb, 0, Canvas.GetLeft(maxThumb), position);
+                    toolTipValue = RangeMin;
+                }
+                else if (_pointerManipulatingMax && normalizedPosition > RangeMin)
+                {
+                    RangeMax = DragThumb(maxThumb, Canvas.GetLeft(minThumb), DragWidth(), position);
+                    toolTipValue = RangeMax;
+                }
+                else
+                {
+                    return;
+                }
+
+                if (_toolTipText != null)
+                {
+                    _toolTipText.Text = FormatForToolTip(toolTipValue);
+                }
             }
         }
 
