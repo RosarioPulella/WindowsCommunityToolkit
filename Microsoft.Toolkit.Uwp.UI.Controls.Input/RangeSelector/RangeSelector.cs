@@ -359,19 +359,24 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
 
         private void ContainerCanvas_PointerExited(object sender, PointerRoutedEventArgs e)
         {
+            if (sender is not Canvas containerCanvas)
+            {
+                return;
+            }
+
             var position = e.GetCurrentPoint(_containerCanvas).Position.X;
             var normalizedPosition = ((position / DragWidth()) * (Maximum - Minimum)) + Minimum;
 
             if (_pointerManipulatingMin)
             {
                 _pointerManipulatingMin = false;
-                _containerCanvas.IsHitTestVisible = true;
+                containerCanvas.IsHitTestVisible = true;
                 OnValueChanged(new RangeChangedEventArgs(RangeMin, normalizedPosition, RangeSelectorProperty.MinimumValue));
             }
             else if (_pointerManipulatingMax)
             {
                 _pointerManipulatingMax = false;
-                _containerCanvas.IsHitTestVisible = true;
+                containerCanvas.IsHitTestVisible = true;
                 OnValueChanged(new RangeChangedEventArgs(RangeMax, normalizedPosition, RangeSelectorProperty.MaximumValue));
             }
 
@@ -385,19 +390,24 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
 
         private void ContainerCanvas_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
+            if (sender is not Canvas containerCanvas)
+            {
+                return;
+            }
+
             var position = e.GetCurrentPoint(_containerCanvas).Position.X;
             var normalizedPosition = ((position / DragWidth()) * (Maximum - Minimum)) + Minimum;
 
             if (_pointerManipulatingMin)
             {
                 _pointerManipulatingMin = false;
-                _containerCanvas.IsHitTestVisible = true;
+                containerCanvas.IsHitTestVisible = true;
                 OnValueChanged(new RangeChangedEventArgs(RangeMin, normalizedPosition, RangeSelectorProperty.MinimumValue));
             }
             else if (_pointerManipulatingMax)
             {
                 _pointerManipulatingMax = false;
-                _containerCanvas.IsHitTestVisible = true;
+                containerCanvas.IsHitTestVisible = true;
                 OnValueChanged(new RangeChangedEventArgs(RangeMax, normalizedPosition, RangeSelectorProperty.MaximumValue));
             }
 
