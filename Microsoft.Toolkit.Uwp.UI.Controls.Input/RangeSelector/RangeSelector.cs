@@ -2,6 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+#nullable enable
+
 using System;
 using Windows.Foundation;
 using Windows.System;
@@ -39,18 +41,18 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
 
         private readonly DispatcherQueueTimer keyDebounceTimer = DispatcherQueue.GetForCurrentThread().CreateTimer();
 
-        private Rectangle _activeRectangle;
-        private Thumb _minThumb;
-        private Thumb _maxThumb;
-        private Canvas _containerCanvas;
+        private Rectangle? _activeRectangle;
+        private Thumb? _minThumb;
+        private Thumb? _maxThumb;
+        private Canvas? _containerCanvas;
         private double _oldValue;
         private bool _minSet;
         private bool _maxSet;
         private bool _pointerManipulatingMin;
         private bool _pointerManipulatingMax;
         private double _absolutePosition;
-        private Grid _toolTip;
-        private TextBlock _toolTipText;
+        private Grid? _toolTip;
+        private TextBlock? _toolTipText;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RangeSelector"/> class.
